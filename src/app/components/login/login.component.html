@@ -1,0 +1,95 @@
+<div class="row">
+    <div class="row d-flex justify-content-center align-items-center h-100">
+        <div class="col-md-9 col-lg-6 col-xl-5">
+            <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-login-form/draw2.webp"
+                class="img-fluid" alt="Sample image">
+        </div>
+
+        <!-- Login Form -->
+
+        <div class="col-md-5">
+            <div class="center-content">
+
+                <mat-card class="example-card">
+
+                    <div class="col-md-5">
+                        <mat-card-header>
+                            <mat-card-title>Login here!</mat-card-title>
+                        </mat-card-header>
+                    </div>
+
+                    <!-- <button (click)="sendData()">Check </button> -->
+
+                    <form [formGroup]="loginForm" (ngSubmit)="login()">
+                        <mat-card-content>
+                            <mat-divider></mat-divider>
+
+                            <!-- Drop Down -->
+                            <!-- <div class="col-md-11">
+
+                                <mat-form-field appearance="outline" class="dropdown">
+                                    <mat-label>Department Name</mat-label>
+                                    <mat-select formControlName="deptName" placeholder="Department">
+                                        <mat-option *ngFor="let dept of department" [value]="dept.deptName">
+                                            {{dept.deptName}}</mat-option>
+                                    </mat-select>
+                                </mat-form-field>
+                            </div> -->
+
+                            <!-- Department ID -->
+                            <div class="col-md-11">
+                                <mat-form-field class="example-full-width">
+                                    <mat-label>User Name</mat-label>
+                                    <input type="username" matInput required placeholder="User Name" value=""
+                                        formControlName="username" >
+                                        <mat-error *ngIf="!loginForm.controls['username'].valid">User Name required</mat-error>
+                                    <mat-icon matSuffix>perm_identity</mat-icon>
+                                </mat-form-field>
+                            </div>
+
+                            <!-- Password -->
+                            <div class="col-md-11">
+                                <mat-form-field class="example-full-width">
+                                    <mat-label>Password</mat-label>
+                                    <input type="password" matInput placeholder="Password"
+                                        formControlName="dept_password" required>
+                                        <mat-error *ngIf="!loginForm.controls['dept_password'].valid">Password is required</mat-error>
+                                    <mat-icon matSuffix>vpn_key</mat-icon>
+                                </mat-form-field>
+                            </div>
+
+                            <!-- SVG-Captcha -->
+                            <div class="row">
+
+                                <div class="col-md-4">
+                                    <div #dataContainer></div>
+                                </div>
+
+                                <div class="col-md-2">
+                                    <a style="cursor: pointer; " (click)="captcha()">
+                                        <mat-icon>refresh</mat-icon>
+                                    </a>
+                                </div>
+
+                                <div class="col-md-5">
+                                    <!-- <mat-icon>accessible</mat-icon> -->
+                                    <input type="text" class="form-control" formControlName="textCaptcha">
+                                </div>
+                            </div>
+                            <!-- <button mat-raised-button type="button" color="primary" (click)="checkCaptcha()">captcha</button> -->
+
+                            <!-- Button -->
+                            <div class="col-md-11">
+                                <button mat-button color="primary">Login</button>
+                            </div>
+
+                        </mat-card-content>
+                    </form>
+
+                </mat-card>
+
+            </div>
+        </div>
+    </div>
+
+</div>

@@ -1,0 +1,13 @@
+<div class="row">
+    <mat-card>
+        <mat-card-content>
+            <div class="col-md-8">
+    <textarea matInput #queryDetail rows="5" cols="80"></textarea>
+</div>
+<div class="col-md-3">
+    <button mat-raised-button color="primary" (click)="sendQuery(queryDetail.value)">Send Query</button>
+</div>
+
+</mat-card-content>
+</mat-card>
+</div>

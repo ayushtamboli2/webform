@@ -1,0 +1,100 @@
+<div class="main-div">
+    <div class="row">
+        <!-- <div class="col-md-2"></div> -->
+        <div class="col-md-3">
+            <!-- 1st Card -->
+            <mat-card class="example-card">
+                <mat-card-title>
+                    Notice
+                    <mat-icon mat-fab color="primary">description</mat-icon>
+                </mat-card-title>
+                <mat-card-content>
+                    <h1 style="color: brown;">Total - {{total.Notice}}</h1>
+                    
+                </mat-card-content>
+                <mat-card-actions align="start">
+                    <mat-progress-bar mode="determinate" value="100"></mat-progress-bar>
+                </mat-card-actions>
+            </mat-card>
+
+        </div>
+
+        <div class="col-md-3">
+            <!-- 2nd Card -->
+            <mat-card class="example-card">
+                <mat-card-title>
+                    Recruitment
+                    <mat-icon mat-fab color="primary">chrome_reader_mode</mat-icon>
+                </mat-card-title>
+                <mat-card-content>
+                    <h1 style="color: brown;">Total - {{total.Recruitment}}</h1> 
+                    
+                </mat-card-content>
+                <mat-card-actions align="start">
+                    <mat-progress-bar mode="determinate" value="100"></mat-progress-bar>
+
+                </mat-card-actions>
+            </mat-card>
+
+
+        </div>
+
+        <div class="col-md-3">
+            <!-- 3rd Card -->
+            <mat-card class="example-card">
+                <mat-card-title>
+                    Tender
+                    <mat-icon mat-fab color="primary">card_travel</mat-icon>
+                </mat-card-title>
+                <mat-card-content>
+                    <h1 style="color: brown;">Total - {{total.Tender}}</h1>
+                    
+                </mat-card-content>
+                <mat-card-actions align="start">
+                    <mat-progress-bar mode="determinate" value="100"></mat-progress-bar>
+
+                </mat-card-actions>
+            </mat-card>
+
+        </div>
+
+        <div class="col-md-3">
+            <!-- 4th Card -->
+            <mat-card class="example-card">
+                <mat-card-title>
+                    Announcement
+                    <mat-icon mat-fab color="primary">announcement</mat-icon>  
+                </mat-card-title>
+                <mat-card-content>
+                    <h1 style="color: brown;">Total- {{total.Announcement}}</h1>
+                     
+                </mat-card-content>
+                <mat-card-actions align="start">
+                    <mat-progress-bar mode="determinate" value="100"></mat-progress-bar>
+                </mat-card-actions>
+            </mat-card>
+        </div>
+
+
+    </div>
+    <br>
+
+    <!-- Second row -->
+    <div class="row">
+        <div>
+            <mat-card>
+                <div class="container text-center">
+                    <owl-carousel-o [options]="customOptions">
+                        <ng-template carouselSlide>
+                            <img src="assets/banner1.jpg">
+                        </ng-template>
+                        <ng-template carouselSlide><img src="assets/banner2.jpg"></ng-template>
+                    </owl-carousel-o>
+                </div>
+
+            </mat-card>
+        </div>
+
+    </div>
+
+</div>

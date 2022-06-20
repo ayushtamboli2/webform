@@ -1,0 +1,141 @@
+<!-- Pending Form Dashboard -->
+<mat-card class="mt-3">
+    <mat-card-header>
+        <mat-card-title>Uploaded Forms</mat-card-title>
+    </mat-card-header>
+
+    <mat-card-content>
+        <!-- Filter -->
+        <mat-form-field appearance="standard">
+            <mat-label class="required">Filter</mat-label>
+            <input matInput autocomplete="off" (keyup)="applyFilter($event)" #input>
+        </mat-form-field>
+
+        <!-- Table -->
+        <div class="mat-elevation-z8">
+            <table mat-table #table [dataSource]="dataSource" class="mat-elevation-z8" style="width: 100%;">
+                <ng-container matColumnDef="sn">
+                    <th mat-header-cell *matHeaderCellDef>S.No</th>
+                    <td mat-cell *matCellDef="let row;let i=index"> {{i+1}} </td>
+                </ng-container>
+
+                <ng-container matColumnDef="dept_name">
+                    <th mat-header-cell *matHeaderCellDef>Department Name</th>
+                    <td mat-cell *matCellDef="let row">{{row.dept_name}}</td>
+                </ng-container>
+
+                <ng-container matColumnDef="date">
+                    <th mat-header-cell *matHeaderCellDef>Date</th>
+                    <td mat-cell *matCellDef="let row">{{row.date | date:'dd-MM-yyyy' }}</td>
+                </ng-container>
+
+                <ng-container matColumnDef="form">
+                    <th mat-header-cell *matHeaderCellDef>Form</th>
+                    <td mat-cell *matCellDef="let row"><button mat-button color="primary" (click)="openDialog(row.form_id)">View</button></td>
+                </ng-container>
+
+                <ng-container matColumnDef="letter">
+                    <th mat-header-cell *matHeaderCellDef>Letter</th>
+                    <td mat-cell *matCellDef="let row"><button mat-mini-fab color="basic" (click)="letter_pdf(row.letter_pdf)">
+                            <mat-icon> cloud_download </mat-icon>
+                        </button> </td>
+                </ng-container>
+
+                <ng-container matColumnDef="attachment">
+                    <th mat-header-cell *matHeaderCellDef>Attachment</th>
+                    <td mat-cell *matCellDef="let row"><button mat-mini-fab color="basic" (click)="soft_pdf(row.soft_pdf)">
+                            <mat-icon> cloud_download </mat-icon>
+                        </button> </td>
+                </ng-container>
+
+                <ng-container matColumnDef="remark">
+                    <th mat-header-cell *matHeaderCellDef style="text-align: center;">Remark</th>
+                    <td mat-cell *matCellDef="let row"><textarea matInput rows="2" cols="40" disabled="true" style="text-align: center; color: green;">{{row.remark}}</textarea></td>
+                </ng-container>
+
+                <ng-container matColumnDef="admin_date">
+                    <th mat-header-cell *matHeaderCellDef style="text-align: center;">Uploaded</th>
+                    <td mat-cell *matCellDef="let row"><textarea matInput rows="2" cols="40" disabled="true" style="text-align: center; color: green;">{{row.admin_date | date:'dd/MM/yyyy'}}</textarea></td>
+                </ng-container>
+
+                <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+                <tr class="mat-row" *matNoDataRow>
+                    <td class="mat-cell" colspan="5">No data matching the filter "{{input.value}}"</td>
+                </tr>
+            </table>
+            <mat-paginator [pageSizeOptions]="[10, 25, 100]"></mat-paginator>
+        </div>
+    </mat-card-content>
+</mat-card>
+
+<!-- Rejected Form Dashboard -->
+<mat-card class="mt-3">
+    <mat-card-header>
+        <mat-card-title>Rejected Forms</mat-card-title>
+    </mat-card-header>
+
+    <mat-card-content>
+        <!-- Filter -->
+        <mat-form-field appearance="standard">
+            <mat-label class="required">Filter</mat-label>
+            <input matInput autocomplete="off" (keyup)="applyFilter2($event)" #input>
+        </mat-form-field>
+
+        <!-- Table -->
+        <div class="mat-elevation-z8">
+            <table mat-table #table [dataSource]="dataSource2" class="mat-elevation-z8" style="width: 100%;">
+                <ng-container matColumnDef="sn">
+                    <th mat-header-cell *matHeaderCellDef>S.No</th>
+                    <td mat-cell *matCellDef="let row;let i=index"> {{i+1}} </td>
+                </ng-container>
+
+                <ng-container matColumnDef="dept_name">
+                    <th mat-header-cell *matHeaderCellDef>Department Name</th>
+                    <td mat-cell *matCellDef="let row">{{row.dept_name}}</td>
+                </ng-container>
+
+                <ng-container matColumnDef="date">
+                    <th mat-header-cell *matHeaderCellDef>Date</th>
+                    <td mat-cell *matCellDef="let row">{{row.date | date:'dd-MM-yyyy' }}</td>
+                </ng-container>
+
+                <ng-container matColumnDef="form">
+                    <th mat-header-cell *matHeaderCellDef>Form</th>
+                    <td mat-cell *matCellDef="let row"><button mat-button color="primary" (click)="openDialog(row.form_id)">View</button></td>
+                </ng-container>
+
+                <ng-container matColumnDef="letter">
+                    <th mat-header-cell *matHeaderCellDef>Letter</th>
+                    <td mat-cell *matCellDef="let row"><button mat-mini-fab color="basic" (click)="letter_pdf(row.letter_pdf)">
+                            <mat-icon> cloud_download </mat-icon>
+                        </button> </td>
+                </ng-container>
+
+                <ng-container matColumnDef="attachment">
+                    <th mat-header-cell *matHeaderCellDef>Attachment</th>
+                    <td mat-cell *matCellDef="let row"><button mat-mini-fab color="basic" (click)="soft_pdf(row.soft_pdf)">
+                            <mat-icon> cloud_download </mat-icon>
+                        </button> </td>
+                </ng-container>
+
+                <ng-container matColumnDef="remark">
+                    <th mat-header-cell *matHeaderCellDef style="text-align: center;">Remark by WIM</th>
+                    <td mat-cell *matCellDef="let row"><textarea matInput rows="2" cols="40" disabled="true" style="text-align: center; color: green;">{{row.wim_date | date:'dd/MM/yyyy'}}  {{row.remark}}</textarea></td>
+                </ng-container>
+
+                <ng-container matColumnDef="admin_remark">
+                    <th mat-header-cell *matHeaderCellDef style="text-align: center;">Rejected</th>
+                    <td mat-cell *matCellDef="let row"><textarea matInput rows="2" cols="40" disabled="true" style="text-align: center; color: red;">{{row.admin_date | date:'dd/MM/yyyy'}}  {{row.admin_remark}}</textarea></td>
+                </ng-container>
+
+                <tr mat-header-row *matHeaderRowDef="displayedColumns2"></tr>
+                <tr mat-row *matRowDef="let row; columns: displayedColumns2;"></tr>
+                <tr class="mat-row" *matNoDataRow>
+                    <td class="mat-cell" colspan="5">No data matching the filter "{{input.value}}"</td>
+                </tr>
+            </table>
+            <mat-paginator [pageSizeOptions]="[10, 25, 100]"></mat-paginator>
+        </div>
+    </mat-card-content>
+</mat-card>

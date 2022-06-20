@@ -1,0 +1,8 @@
+<h1 mat-dialog-title>Download Files</h1>
+<div mat-dialog-content>
+  <ul>
+    <li *ngFor="let link of links">
+      <a href="{{root + '/' + folder + '/' + link}}" target="_blank">{{link}}</a>
+    </li>
+  </ul>
+</div>

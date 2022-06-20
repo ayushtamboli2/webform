@@ -1,0 +1,124 @@
+<div class="col-md-offset-3">
+    <div class="center-content">
+        <!--Change password-->
+        <mat-card class="example-card" *ngIf="!profile">
+            <form [formGroup]="changepass" (ngSubmit)="changePass()">
+                <div class="card-container">
+                    <mat-card-header>
+                        <mat-card-title style="color: #1a2235; text-align: center;">Change Password</mat-card-title>
+                    </mat-card-header>
+                </div>
+
+                <mat-card-content>
+                    <mat-divider></mat-divider>
+
+                    <!-- Sub-Department Name -->
+                    <div class="row">
+                        <div class="col-md-11">
+                            <mat-form-field class="example-full-width">
+                                <mat-label>Old Password</mat-label>
+                                <input type="password" formControlName="oldPassword" matInput
+                                    placeholder="Enter old password" required>
+                                    <mat-error *ngIf="!changepass.controls['oldPassword'].valid">Password is required</mat-error>
+
+                            </mat-form-field>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <!--email-->
+                        <div class="col-md-6">
+                            <mat-form-field class="example-full-width">
+                                <mat-label>New password</mat-label>
+                                <input type="password" formControlName="newPassword" matInput
+                                    placeholder="Enter new password" #npass>
+                                    <mat-error *ngIf="!changepass.controls['newPassword'].valid">Password is required</mat-error>
+                            </mat-form-field>
+                        </div>
+
+                        <!--mobile-->
+                        <div class="col-md-6">
+                            <mat-form-field class="example-full-width">
+                                <mat-label>Confirm Password</mat-label>
+                                <input type="password" formControlName="confirmPassword" matInput #cpass (keyup)="matchPass(npass.value,cpass.value)">
+                                <mat-error *ngIf="!changepass.controls['confirmPassword'].valid">Password is required</mat-error>
+                                <mat-icon matSuffix style="color: red;" *ngIf="redIcon">block</mat-icon>
+                                <mat-icon matSuffix style="color: green;" *ngIf="greenIcon">check_circle_outline</mat-icon>
+                             </mat-form-field>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <span style="text-align: left; color: grey;">*Note- Password should be atleast 8 charachters in length with one number and one special charachter</span>
+                    </div>
+
+                    <!-- Button -->
+                    <div class="col-md-11">
+                        <button mat-raised-button color="warn" [disabled]="checkPassword == false">Update</button>
+                    </div>
+                    <br>
+
+                    <span>Do you want ? <a (click)="profile=true" style="color: blue;">Update Profile</a></span>
+                </mat-card-content>
+            </form>
+        </mat-card>
+
+        <!-- Update profile -->
+        <mat-card class="example-card" *ngIf="profile">
+            <form [formGroup]="updateProfile" (ngSubmit)="updatePro()">
+                <div class="card-container">
+                    <mat-card-header>
+                        <mat-card-title style="color: #1a2235; text-align: center;">Update Profile</mat-card-title>
+                    </mat-card-header>
+                </div>
+
+                <mat-card-content>
+                    <mat-divider></mat-divider>
+                    <!-- Sub-Department Name -->
+                    <div class="row">
+                        <div class="col-md-6">
+                            <mat-form-field class="example-full-width">
+                                <mat-label>Officer Name</mat-label>
+                                <input type="text" matInput formControlName="officer_name"
+                                    placeholder="Enter current officer name" required >
+
+                            </mat-form-field>
+                        </div>
+                        <!-- Department ID -->
+                        <div class="col-md-6">
+                            <mat-form-field class="example-full-width">
+                                <mat-label>Designation</mat-label>
+                                <input type="text" matInput formControlName="designation"
+                                    placeholder="Enter designation" required>
+                            </mat-form-field>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <!--email-->
+                        <div class="col-md-6">
+                            <mat-form-field class="example-full-width">
+                                <mat-label>Email</mat-label>
+                                <input type="email" matInput formControlName="email" placeholder="Enter email id" required>
+                            </mat-form-field>
+                        </div>
+
+                        <!--mobile-->
+                        <div class="col-md-6">
+                            <mat-form-field class="example-full-width">
+                                <mat-label>Mobile</mat-label>
+                                <input type="mobile" matInput formControlName="mobile" placeholder="Enter mobile number" required>
+                            </mat-form-field>
+                        </div>
+                    </div>
+                    <!-- Button -->
+                    <div class="col-md-11">
+                        <button mat-button color="primary">Update</button>
+                    </div>
+
+                    <br>
+                    <span>Do you want ? <a (click)="profile=false" style="color: blue;">Change Password</a></span>
+                </mat-card-content>
+            </form>
+        </mat-card>
+    </div>
+</div>

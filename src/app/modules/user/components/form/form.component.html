@@ -1,0 +1,351 @@
+<form class="form-container" [formGroup]="uploadForm" (ngSubmit)="uploadFile()">
+
+    <mat-card *ngIf="!showReciept">
+
+        <div style="text-align:center;">
+            <mat-card-title>
+                <h2><b>Website Upload Form</b></h2>
+            </mat-card-title>
+        </div>
+        <mat-divider></mat-divider>
+        <br>
+        <mat-card-content>
+
+            <!--First Row  -->
+            <div class="row">
+                <!-- Department List -->
+                <div class="col-md-4">
+                    <mat-form-field appearance="outline" style="width: 100%;">
+                        <mat-label>Department Name</mat-label>
+                        <mat-select placeholder="Department" formControlName="dept_name" required>
+                            <mat-option [value]="deptData.deptName">
+                                {{deptData.deptName}}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+
+                <!-- Information Category List -->
+                <div class="col-md-4">
+                    <mat-form-field appearance="outline" style="width: 100%;">
+                        <mat-label>Information Type:</mat-label>
+                        <mat-select placeholder="Type" formControlName="info_type" required>
+                            <mat-option *ngFor="let type of InfoType" [value]="type.info_type">
+                                {{type.info_type }}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+            </div>
+
+
+            <!-- Second Row -->
+            <div class="row">
+
+                <div class="col-md-6">
+                    <b>Specify Exact Information Link:</b>
+                    <mat-form-field appearance="outline" style="width: 100%;">
+                        <mat-label>English</mat-label>
+                        <textarea matInput placeholder="Same Link Will be displayed on site" rows="5" cols="40"
+                            formControlName="eng_link" required></textarea>
+                    </mat-form-field>
+                </div>
+
+                <div class="col-md-6">
+                    <b>हिन्दी लिंक:</b>
+                    <mat-form-field appearance="outline" style="width: 100%">
+                        <mat-label>हिन्दी</mat-label>
+                        <textarea matInput placeholder="यह हिन्दी लिंक साईट पर दिखेगा" rows="5" cols="40"
+                            formControlName="hindi_link" required></textarea>
+                    </mat-form-field>
+                </div>
+            </div>
+
+            <!-- Third Row -->
+            <div class="row">
+                <b>Publication Period</b>
+                <br>
+                <br>
+                <div class="col-md-4">
+                    <mat-form-field appearance="outline" style="width: 90%;">
+                        <mat-label>From Date</mat-label>
+                        <input type="date" formControlName="from_date" matInput required >
+                    </mat-form-field>
+                </div>
+
+                <div class="col-md-4">
+                    <mat-form-field appearance="outline" style="width: 90%;">
+                        <mat-label>To Date</mat-label>
+                        <input type="date" formControlName="to_date" matInput required >
+                    </mat-form-field>
+                </div>
+
+            </div>
+
+            <!-- 4th Row -->
+            <div class="row">
+                <b>Information Submitted By:</b>
+                <br>
+                <!-- Fill Name -->
+                <div class="col-md-4">
+                    <mat-form-field appearance="outline" style="width: 80%">
+                        <mat-label>Name</mat-label>
+                        <input matInput placeholder="Enter Full Name" formControlName="submited_by" required>
+                    </mat-form-field>
+                </div>
+
+                <!-- Designation -->
+                <div class="col-md-4">
+                    <mat-form-field appearance="outline" style="width: 80%;">
+                        <mat-label>Designation</mat-label>
+                        <input matInput placeholder="Enter Designation" formControlName="designation" required>
+                    </mat-form-field>
+                </div>
+
+                <!-- Mobile Number -->
+                <div class="col-md-4">
+                    <mat-form-field appearance="outline" style="width: 80%;">
+                        <mat-label>Mobile Number</mat-label>
+                        <input matInput placeholder="Enter Mobile Number" formControlName="mobile" required>
+                    </mat-form-field>
+                </div>
+            </div>
+
+
+            <!-- 5th Row -->
+            <div class="row">
+                <b>Attachments:</b>
+                <div class="col-md-4">
+                    <br>
+                    <mat-label>* Authority signed letter with one information copy.</mat-label>
+                    <input type="file" name="image1" #letterFile style="margin-top: 15px;" (change)="getLetter($event)"/>
+                </div>
+
+                <div class="col-md-4">
+                    <br>
+                    <mat-label>* Soft copy of information.</mat-label>
+                    <input type="file" name="image2" multiple #softFile style="margin-top: 15px;" (change)="getSoftCopy($event)"
+                         />
+                </div>
+            </div>
+            <!-- formControlName="soft_pdf"
+            formControlName="letter_pdf" -->
+
+            <br>
+            <br>
+            <!-- Certificate Text -->
+            <mat-card>
+                <div style="text-align:center;">
+                    <mat-card-title>
+                        <h3><b>CERTIFICATE FOR UPLOADING THE CONTENTS</b></h3>
+                    </mat-card-title>
+                </div>
+                <mat-divider></mat-divider>
+                <br>
+                <mat-card-content>
+                    <p>This is to certify that, the information submitted
+                        for uploading on the district website has been verified
+                        by this office and "It is found correct as per IT Act
+                        2000 and Aadhar Act 2016 (office memorandum
+                        No.10(36)/2015-EG-II(Vol-V)dated 25-03-2017 of MEIT,GOI).</p>
+                    <p> Hence, it can be uploaded on the website http://bilaspur.gov.in</p>
+                    <span>All above fields are mandatory.</span>
+                </mat-card-content>
+                <div class="row">
+                    <div style="text-align:left;">
+                        <mat-checkbox class="example-margin" formControlName="agreed" color="primary" required>I Agree</mat-checkbox>
+                    </div>
+                </div>
+            </mat-card>
+            <br>
+            <!-- Submit Button -->
+            <mat-card-actions>
+                <button mat-raised-button color="primary" style="margin-left: 45%;">Save</button>
+            </mat-card-actions>
+        </mat-card-content>
+    </mat-card>
+</form>
+
+<mat-card *ngIf="showReciept">
+    <mat-action-row>
+        <div class="col-md-12 text-center">
+            <button [useExistingCss]="true" printSectionId="print-section" class="btn btn-info" ngxPrint>
+                <i class="material-icons">print</i>Print</button> &nbsp;&nbsp;&nbsp;
+            <button class="btn btn-info">
+                <i class="material-icons">west</i>Back</button>
+        </div>
+    </mat-action-row>
+    <br>
+    <mat-card-content>
+        <div id="print-section">
+            <mat-card-title class="text-center">
+                <div class="row">
+                    <div class="col-md-3"></div>
+                    <div class="col-md-6 text-center">
+                        <u>Mungeli.gov.in</u><br>
+                        <strong>Official Website of Mungeli District</strong><br>
+                        <strong>Collector Office, Mungeli</strong>
+                    </div>
+                </div>
+                <br>
+            </mat-card-title>
+
+            <mat-card-content style="margin-top: -10px;">
+
+                <div style="font-size:19px;border:1px solid;">
+                    <!-- Row 1 -->
+                    <div class="row mt-1">
+                        <div class="col-md-9">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <span style="font-weight:700;">Department Name : </span>
+                                    <span>
+                                        Zila Panchayat
+                                    </span>
+                                </div>
+                                <div class="col-md-3">
+                                    <span style="font-weight:700;">Date : </span>
+                                    <span>
+                                        03-04-2022
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <br>
+                    <!-- Row 2 -->
+                    <div class="row mt-1">
+                        <div class="col-md-6">
+                            <span style="font-weight:700;">Information Type : </span>
+                            <span>
+                                Notice
+                            </span>
+                        </div>
+                    </div>
+                    <br>
+                    <!-- Row 3 -->
+                    <div class="row mt-1">
+                        <div class="row">
+                            <div class="col-md-9">
+                                <span style="font-weight:700;">Specific Exact Information Link (Same link will be
+                                    displayed on site) : </span>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <span style="font-weight:500;">Hindi :</span>
+                                <p>
+                                    This is to certify that, the information
+                                    submitted for uploading on the district website
+                                    has been verified by this office and
+                                    "It is found correct as per IT Act
+                                </p>
+                            </div>
+
+                            <div class="col-md-6">
+                                <span style="font-weight:500;">English :</span>
+                                <p>
+                                    This is to certify that, the information
+                                    submitted for uploading on the district website
+                                    has been verified by this office and
+                                    "It is found correct as per IT Act
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Row 4 -->
+                    <div class="row mt-1">
+                        <div class="row">
+                            <div class="col-md-9">
+                                <span style="font-weight:700;">Publication Period : </span>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-4">
+                                <span style="font-weight:500;">From Date :</span>
+                                <span>
+                                    03-04-2022
+                                </span>
+                            </div>
+                            <div class="col-md-3">
+                                <span style="font-weight:500;">To Date :</span>
+                                <span>
+                                    07-04-2022
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                   
+                    <!-- Row 5 -->
+                    <div class="row mt-1">
+                        <div class="row">
+                            <div class="col-md-9">
+                                <span style="font-weight:700;">Information Submitted by : </span>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-4">
+                                <span style="font-weight:500;">Name :</span>
+                                <span>
+                                    Ayush Tamboli
+                                </span>
+                            </div>
+                            <div class="col-md-3">
+                                <span style="font-weight:500;">Designation :</span>
+                                <span>
+                                    Student
+                                </span>
+                            </div>
+                        </div>
+                        <br>
+                        <br>
+                        <div class="row">
+                            <div class="col-md-4">
+                                <span style="font-weight:500;">Mobile No :</span>
+                                <span>
+                                    9039272267
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <br>
+                    <!-- Row 5 -->
+                    <div class="row mt-1">
+                        <div class="row">
+                            <div class="col-md-3"></div>
+                            <div class="col-md-6 text-center">
+                                <u>CERTIFICATE FOR UPLOADING THE CONTENTS</u>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-1"></div>
+                            <div class="col-md-9">
+                                <p>
+                                    This is to certify that, the information submitted
+                                    for uploading on the district website has been
+                                    verified by this office and "It is found correct
+                                    as per IT Act 2000 and Aadhar Act 2016 (office
+                                    memorandum No.10(36) /2015-EG-II(Vol-V)dated 25-03-2017 of MEIT,GOI).
+                                </p>
+                                <p>
+                                    Hence, it can be uploaded on the website http://mungeli.gov.in
+                                </p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-5"></div>
+                            <div class="col-md-4">
+                                <mat-checkbox [checked]="true" class="example-margin" >
+                                    <label>I Agree </label>
+                                </mat-checkbox>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </mat-card-content>
+        </div>
+    </mat-card-content>
+
+</mat-card>

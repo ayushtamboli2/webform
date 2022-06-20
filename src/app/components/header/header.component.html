@@ -1,0 +1,170 @@
+<!-- Navigation Bar -->
+<mat-toolbar class="mat-elevation-z8">
+    <button mat-icon-button>
+        <mat-icon (click)="sidenav.toggle();">menu</mat-icon>
+     
+    </button>
+    <span>District Notification System</span>
+    <div class="spacer"></div>
+    <!-- Login -->
+    <a mat-raised-button color="accent" routerLink="login" *ngIf="!isLogin">Login</a>
+    <!-- Logout -->
+    <div class="row mr-2 ml-auto" *ngIf="isLogin" >
+        <ul id="abc" class="row m-0 align-items-center" >
+            <li>
+                <button mat-button [matMenuTriggerFor]="menu" class="user mt-2 d-flex align-items-center">
+                   {{username}}
+                    <mat-icon class="user-image-icon ml-1">keyboard_arrow_down</mat-icon>
+                </button>
+                <mat-menu #menu="matMenu">
+                    <button mat-menu-item (click)="logout()">
+                        <mat-icon>exit_to_app</mat-icon>
+                        Logout
+                    </button>
+                </mat-menu>
+            </li>
+        </ul>
+    </div>
+</mat-toolbar>
+
+<!-- Sidebar  -->
+<mat-sidenav-container>
+    <!-- Not Logged In -->
+    <mat-sidenav #sidenav="matSidenav"  *ngIf="role==0">
+        <mat-divider></mat-divider>
+        <button mat-button class="menu-button" routerLink="home">
+            <mat-icon>home</mat-icon>
+            <span>Home</span>
+        </button>
+        <button mat-button routerLink="contact" class="menu-button">
+            <mat-icon>contact_support</mat-icon>
+            <span>Contact</span>
+        </button>
+        <button mat-button routerLink="about" class="menu-button">
+            <mat-icon>info</mat-icon>
+            <span>About</span>
+        </button>
+        
+        <mat-divider></mat-divider>
+
+    </mat-sidenav>
+
+    <!-- User Logged in -->
+
+    <mat-sidenav #sidenav="matSidenav" mode="side" opened *ngIf="role==2">
+
+        <img class="avatar mat-elevation-z8" src="assets/wim.png" />
+
+        <h4 class="name">{{dept_name}}</h4>
+        
+        <mat-divider></mat-divider>
+
+        <button mat-button class="menu-button" routerLink="home">
+            <mat-icon>home</mat-icon>
+            <span>Home</span>
+        </button>
+
+        <button mat-button class="menu-button" routerLink="user/form">
+            <mat-icon>chrome_reader_mode</mat-icon>
+            <span>Form</span>
+        </button>
+
+        <button mat-button class="menu-button" routerLink="user/applist">
+            <mat-icon>receipt</mat-icon>
+            <span>Applications</span>
+        </button>
+
+        <button mat-button class="menu-button" routerLink="user/track">
+            <mat-icon>linear_scale</mat-icon>
+            <span>Track</span>
+        </button>
+
+        <button mat-button class="menu-button" routerLink="user/uprofile">
+            <mat-icon>account_circle</mat-icon>
+            <span>Update Profile</span>
+        </button>
+
+    </mat-sidenav>
+
+    <!-- WIM Logged in -->
+    <mat-sidenav #sidenav="matSidenav" mode="side" opened *ngIf="role==3">
+
+        <img class="avatar mat-elevation-z8" src="assets/wim.png" />
+
+        <h4 class="name">{{dept_name}}</h4>
+        <mat-divider></mat-divider>
+
+        <button mat-button class="menu-button" routerLink="wim/pending">
+            <mat-icon>assignment_returned</mat-icon>
+            <span>Pending</span>
+        </button>
+
+        <button mat-button class="menu-button" routerLink="wim/applications">
+            <mat-icon>linear_scale</mat-icon>
+            <span>Applications</span>
+        </button>
+
+        <button mat-button class="menu-button" routerLink="wim/profile">
+            <mat-icon>chrome_reader_mode</mat-icon>
+            <span>Profile</span>
+        </button>
+
+        <!-- <button mat-button class="menu-button" routerLink="wim/changepass">
+            <mat-icon>receipt</mat-icon>
+            <span>Change Password</span>
+        </button> -->
+
+        
+    </mat-sidenav>
+
+
+    <!-- Admin Logged in -->
+    <mat-sidenav #sidenav="matSidenav" mode="side" opened *ngIf="role==1">
+
+        <img class="avatar mat-elevation-z8" src="assets/nic.png" />
+
+        <h4 class="name">National Informatics Center</h4>
+        <mat-divider></mat-divider>
+
+        <button mat-button class="menu-button" routerLink="home">
+            <mat-icon>home</mat-icon>
+            <span>Home</span>
+        </button>
+
+        <button mat-button class="menu-button" routerLink="admin/pending">
+            <mat-icon>assignment_returned</mat-icon>
+            <span>Pending</span>
+        </button>
+
+        <button mat-button class="menu-button" routerLink="admin/appList">
+            <mat-icon>linear_scale</mat-icon>
+            <span>Applications</span>
+        </button>
+
+        <button mat-button class="menu-button" routerLink="admin/userList">
+            <mat-icon>chrome_reader_mode</mat-icon>
+            <span>Users</span>
+        </button>
+
+        <button mat-button class="menu-button" routerLink="admin/departments">
+            <mat-icon>receipt</mat-icon>
+            <span>Departments</span>
+        </button>
+
+        <button mat-button class="menu-button" routerLink="admin/aprofile">
+            <mat-icon>account_circle</mat-icon>
+            <span>Update Profile</span>
+        </button>
+
+        
+
+    </mat-sidenav>
+
+
+    <!-- Main Content -->
+    <mat-sidenav-content>
+        <div class="content">
+            <router-outlet></router-outlet>
+        </div>
+    </mat-sidenav-content>
+</mat-sidenav-container>
